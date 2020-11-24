@@ -1,8 +1,14 @@
 {
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
+  },
   "name": "@nuxtjs/auth",
   "version": "4.9.0",
   "description": "Authentication module for Nuxt.js",
-  "repository": "nuxt-community/auth-module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yoshihiro-Hirose/auth-module.git"
+  },
   "license": "MIT",
   "main": "./dist/module/index.js",
   "types": "./dist/index.d.ts",

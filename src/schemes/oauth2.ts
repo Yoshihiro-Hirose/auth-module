@@ -290,8 +290,17 @@ export default class Oauth2Scheme extends BaseScheme<typeof DEFAULTS> {
 
   async _handleCallback () {
     // Handle callback only for specified route
-    if (this.$auth.options.redirect && normalizePath(this.$auth.ctx.route.path) !== normalizePath(this.$auth.options.redirect.callback)) {
-      return
+    if (this.$auth.options.redirect) {
+      const options:any = this.$auth.options
+      if (options.experimental.useRouterBase) {
+        if (!normalizePath(this.$auth.options.redirect.callback).endsWith(normalizePath(this.$auth.ctx.route.path))) {
+          return
+        }
+      } else {
+        if (normalizePath(this.$auth.ctx.route.path) !== normalizePath(this.$auth.options.redirect.callback)) {
+          return
+        }
+      }
     }
     // Callback flow is not supported in server side
     if (process.server) {
